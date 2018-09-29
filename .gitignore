@@ -1,0 +1,19 @@
+# use glob syntax.
+syntax: glob
+*.ser
+*.class
+*~
+*.bak
+*.off
+*.old
+*.iml
+
+# building
+target
+build
+null
+tmp*
+temp*
+dist
+test-output
+.idea
