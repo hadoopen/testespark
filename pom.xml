@@ -48,13 +48,15 @@
             <version>${spark.version}</version>
             <scope>compile</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-mllib_2.11 -->
+
+        <!-- https://mvnrepository.com/artifact/org.scalatest/scalatest -->
         <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-mllib_${scala.compactVersion}</artifactId>
-            <version>${spark.version}</version>
-            <scope>compile</scope>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.11</artifactId>
+            <version>3.2.0-SNAP4</version>
+            <scope>test</scope>
         </dependency>
+
     </dependencies>
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>

@@ -1,0 +1,128 @@
+Qual o objetivo do comando cache em Spark?
+ Tem o Objectivo de persistir o dataset possibilitando processamentos mais rápido para vários outros datasets que usem esse com obase
+
+
+O mesmo código implementado em Spark é normalmente mais rápido que a implementação equivalente em
+ MapReduce. Por quê?
+ Por que a engine do spark foi feita para performar melhor que o MapReduce o qual usa somente disco para a persistência
+ de dados, enquanto que o spark alem de poder usar disco para persistência pode usar também disco/memória ou somente memória.
+
+
+Qual é a função do SparkContext ?
+ Estabelecer conexão com os demais hosts do cluster com a ajuda do resource manager
+
+
+Explique com suas palavras o que é Resilient Distributed Datasets (RDD).
+ É uma coleção de dados distribuida e tolerante a falha que pode ser processada em paralelo em algumas partições em uma maquina
+  ou um cluster. Ele é resiliente pois monta uma linhagem de dados(DAG) o que em caso de falha possibilita que dados de uma partição
+  sejam reprocessados ao invés de reprocessar o dataset inteiro.
+
+
+GroupByKey é menos eficiente que reduceByKey em grandes dataset. Por quê?
+Por que pode demorar em caso de muitos shuffles devido ao volume de dados trafegados pela rede entres as máquinas para posteriormente
+ agregar os dados. Pelo contrario o reduceByKey agrega os dados que tem em sua máquina e depois movimenta o resultado entre as máquinas na rede,
+  esse volume é bem menor e minimiza a quantidade de shuffles e tempo,posteriormente os dados dos resultados são agregados.
+
+
+Explique o que o código Scala abaixo faz.
+    val textFile = sc . textFile ( "hdfs://..." )
+    val counts = textFile . flatMap ( line => line . split ( " " ))
+    . map ( word => ( word , 1 ))
+    . reduceByKey ( _ + _ )
+    counts . saveAsTextFile ( "hdfs://..." )
+
+Lê um arquivo texto no cluster hdfs, tranforma cada palavra em uma tupla de palavra sendo a chave e o numero 1 como valor,
+ depois agrupa cada palavra com a sua contagem e salva do cluster hdfs.
+Resumingo grava as palavras com as suas contagem no hdfs.
+
+
+
+
+###### Programa ######
+
+1. Número de hosts únicos.
+137826
+
+2. O total de erros 404.
+8152
+
+3. Os 5 URLs que mais causaram erro 404.
++--------------------+------------+
+|clientIp            |qtd_hosts404|
++--------------------+------------+
+|piweba3y.prodigy.com|21988       |
+|piweba4y.prodigy.com|16437       |
+|piweba1y.prodigy.com|12825       |
+|edams.ksc.nasa.gov  |11944       |
+|163.206.89.4        |9697        |
++--------------------+------------+
+
+4. Quantidade de erros 404 por dia.
+Média de 355
+
++-----------+-----+
+|       data|count|
++-----------+-----+
+|02/Jul/1995|  289|
+|21/Aug/1995|  303|
+|06/Aug/1995|  370|
+|16/Jul/1995|  256|
+|07/Aug/1995|  523|
+|11/Aug/1995|  259|
+|27/Jul/1995|  334|
+|07/Jul/1995|  563|
+|17/Jul/1995|  403|
+|15/Jul/1995|  252|
+|18/Jul/1995|  463|
+|26/Jul/1995|  319|
+|03/Aug/1995|  299|
+|18/Aug/1995|  246|
+|17/Aug/1995|  265|
+|14/Aug/1995|  283|
+|10/Jul/1995|  390|
+|04/Jul/1995|  355|
+|20/Aug/1995|  312|
+|20/Jul/1995|  427|
+|24/Aug/1995|  419|
+|27/Aug/1995|  370|
+|13/Aug/1995|  214|
+|15/Aug/1995|  321|
+|28/Jul/1995|   93|
+|25/Aug/1995|  411|
+|12/Jul/1995|  459|
+|06/Jul/1995|  630|
+|22/Aug/1995|  283|
+|08/Aug/1995|  374|
+|22/Jul/1995|  180|
+|01/Jul/1995|  314|
+|23/Jul/1995|  230|
+|21/Jul/1995|  332|
+|23/Aug/1995|  338|
+|19/Aug/1995|  202|
+|24/Jul/1995|  324|
+|26/Aug/1995|  362|
+|31/Aug/1995|  525|
+|28/Aug/1995|  405|
+|04/Aug/1995|  343|
+|12/Aug/1995|  190|
+|30/Aug/1995|  564|
+|19/Jul/1995|  636|
+|05/Aug/1995|  230|
+|08/Jul/1995|  299|
+|09/Jul/1995|  341|
+|01/Aug/1995|  242|
+|25/Jul/1995|  458|
+|05/Jul/1995|  491|
+|11/Jul/1995|  469|
+|29/Aug/1995|  411|
+|13/Jul/1995|  524|
+|16/Aug/1995|  257|
+|09/Aug/1995|  277|
+|10/Aug/1995|  312|
+|14/Jul/1995|  407|
+|03/Jul/1995|  473|
++-----------+-----+
+
+
+5. O total de bytes retornados.
+717354695
